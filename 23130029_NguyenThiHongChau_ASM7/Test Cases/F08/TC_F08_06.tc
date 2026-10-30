@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_06: Kiểm tra tìm theo tên nhân viên đầy đủ, chọn từ gợi ý rồi click [View]</description>
+   <name>TC_F08_06</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>b7084fbb-22f6-4186-b15a-4a64c1b7e025</testCaseGuid>
+</TestCaseEntity>

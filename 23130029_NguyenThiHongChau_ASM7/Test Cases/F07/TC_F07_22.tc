@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_22: Kiểm tra biên phút hợp lệ: nhập giờ = 08:59</description>
+   <name>TC_F07_22</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>b67c7b7d-c36a-49cc-a050-c26484283417</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_34: Kiểm tra Supervisor không xem/duyệt được timesheet của nhân viên không phải cấp dưới</description>
+   <name>TC_F09_34</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>1fed498a-9d48-4379-b297-c5a091bb9ef7</testCaseGuid>
+</TestCaseEntity>

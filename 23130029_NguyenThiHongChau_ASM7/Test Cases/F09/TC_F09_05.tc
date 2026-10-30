@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_05: Kiểm tra gửi timesheet của kỳ trong quá khứ</description>
+   <name>TC_F09_05</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>7ed0e4bc-f556-4b1a-9318-8bd955ad84e7</testCaseGuid>
+</TestCaseEntity>

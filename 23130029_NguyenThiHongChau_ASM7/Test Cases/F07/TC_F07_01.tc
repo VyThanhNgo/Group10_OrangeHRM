@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_01: Kiểm tra hiển thị nút [Create Timesheet] khi nhân viên chưa có timesheet ở kỳ hiện tại</description>
+   <name>TC_F07_01</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>1c4a5155-9464-4412-9a58-8ae67565eaaf</testCaseGuid>
+</TestCaseEntity>

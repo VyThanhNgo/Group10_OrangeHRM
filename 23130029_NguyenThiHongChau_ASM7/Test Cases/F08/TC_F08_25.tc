@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_25: Kiểm tra SQL Injection tại Employee Name: ' OR 1=1 --</description>
+   <name>TC_F08_25</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>c4d622e3-dd04-405e-8651-42b17d336992</testCaseGuid>
+</TestCaseEntity>
