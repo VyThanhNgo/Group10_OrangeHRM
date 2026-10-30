@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_22: Kiểm tra lịch sử thao tác ghi đúng người thực hiện, hành động, thời gian</description>
+   <name>TC_F09_22</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>7e8bfbb2-2992-4835-9095-81041530b923</testCaseGuid>
+</TestCaseEntity>

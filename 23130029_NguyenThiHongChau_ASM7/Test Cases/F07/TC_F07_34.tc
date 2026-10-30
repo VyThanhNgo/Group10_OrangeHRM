@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_34: Kiểm tra 2 hàng trùng cặp Project + Activity</description>
+   <name>TC_F07_34</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>ece25bff-440b-4406-a26f-55b13611b436</testCaseGuid>
+</TestCaseEntity>

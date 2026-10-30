@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_05: Kiểm tra nhập giờ dạng số nguyên '8' được chuẩn hóa thành 08:00</description>
+   <name>TC_F07_05</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>8ba42933-034f-4e27-a266-8d739caedd77</testCaseGuid>
+</TestCaseEntity>

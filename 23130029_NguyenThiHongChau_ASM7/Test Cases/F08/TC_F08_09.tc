@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_09: Kiểm tra tên có khoảng trắng ở đầu/cuối ('  Test Employee  ')</description>
+   <name>TC_F08_09</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>0b4c074e-f475-4de4-b00c-a67cf251306f</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_21: Kiểm tra luồng end-to-end: gửi lại sau Reject rồi Admin Approve</description>
+   <name>TC_F09_21</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>f8713515-e529-466b-a648-268488e50b22</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_27: Kiểm tra ESS (không phải supervisor) không truy cập được Employee Timesheets</description>
+   <name>TC_F08_27</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>472926d8-b01b-48db-8461-fe2868515d22</testCaseGuid>
+</TestCaseEntity>

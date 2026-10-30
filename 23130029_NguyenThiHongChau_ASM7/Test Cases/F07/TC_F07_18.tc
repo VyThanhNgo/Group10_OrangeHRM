@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_18: Kiểm tra biên trên hợp lệ: nhập giờ = 23:59 cho 1 ngày</description>
+   <name>TC_F07_18</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>2564fbad-d3f6-414f-98a2-f7914670324a</testCaseGuid>
+</TestCaseEntity>

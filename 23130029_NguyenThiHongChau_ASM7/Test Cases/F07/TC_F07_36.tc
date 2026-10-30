@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_36: Kiểm tra kỳ đã có timesheet thì không cho tạo trùng</description>
+   <name>TC_F07_36</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>ce7c8a31-a6a0-4c33-915b-eab5a006c601</testCaseGuid>
+</TestCaseEntity>
