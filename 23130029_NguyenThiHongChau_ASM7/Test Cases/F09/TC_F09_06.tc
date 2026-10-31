@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_06: Kiểm tra gửi timesheet có tổng giờ lớn nhất hợp lệ (7 ngày × 23:59)</description>
+   <name>TC_F09_06</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>0ac7dcb6-4497-473f-9aed-74b9eebadf7b</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_12: Kiểm tra tổng giờ theo ngày và tổng giờ cả tuần tính đúng</description>
+   <name>TC_F08_12</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>c4703f64-b431-4e8a-b43f-5571e89fd6a3</testCaseGuid>
+</TestCaseEntity>

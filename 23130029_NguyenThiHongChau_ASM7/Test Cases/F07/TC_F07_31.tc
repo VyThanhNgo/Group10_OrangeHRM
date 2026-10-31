@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_31: Kiểm tra nhập giờ là chữ ('abc')</description>
+   <name>TC_F07_31</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>b5d7b43e-1319-4552-bca7-630136d0e533</testCaseGuid>
+</TestCaseEntity>

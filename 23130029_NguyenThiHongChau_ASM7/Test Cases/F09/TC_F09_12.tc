@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_12: Kiểm tra hết phiên đăng nhập khi đang Submit</description>
+   <name>TC_F09_12</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>a26019c0-4f05-4f22-a56e-fea753951109</testCaseGuid>
+</TestCaseEntity>

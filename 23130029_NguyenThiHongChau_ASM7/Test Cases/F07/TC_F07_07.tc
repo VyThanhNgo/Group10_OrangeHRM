@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_07: Kiểm tra nhập giờ dạng H:MM '8:30'</description>
+   <name>TC_F07_07</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>0d52627e-66b2-4d9d-9f69-dae9556152c0</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_20: Kiểm tra click [View] khi để trống Employee Name</description>
+   <name>TC_F08_20</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>aa33a41c-da4a-4075-90ba-86002522610b</testCaseGuid>
+</TestCaseEntity>

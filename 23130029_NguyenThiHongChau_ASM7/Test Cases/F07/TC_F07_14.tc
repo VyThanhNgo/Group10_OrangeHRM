@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_14: Kiểm tra click [Cancel] khi đang nhập dữ liệu</description>
+   <name>TC_F07_14</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>259bc76a-0acd-4b01-b218-166586d54e70</testCaseGuid>
+</TestCaseEntity>

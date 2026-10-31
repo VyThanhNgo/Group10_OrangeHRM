@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_13: Kiểm tra Admin phê duyệt (Approve) timesheet đã Submitted</description>
+   <name>TC_F09_13</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>49773e9d-237f-47ba-a7ce-aa237de61cbd</testCaseGuid>
+</TestCaseEntity>

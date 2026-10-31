@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_11: Kiểm tra nhấn đúp nút [Submit]</description>
+   <name>TC_F09_11</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>ec3f22cc-2103-40d4-bd4c-80ea618f0be2</testCaseGuid>
+</TestCaseEntity>

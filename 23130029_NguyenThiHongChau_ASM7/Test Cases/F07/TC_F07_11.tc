@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_11: Kiểm tra thêm nhiều hàng bằng [Add Row]</description>
+   <name>TC_F07_11</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>88e6b338-d6a1-48fb-bcf2-4d349384f86d</testCaseGuid>
+</TestCaseEntity>

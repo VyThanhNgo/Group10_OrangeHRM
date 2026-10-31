@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_11: Kiểm tra dữ liệu chi tiết timesheet khớp với dữ liệu đã nhập</description>
+   <name>TC_F08_11</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>faa0e768-a3ba-4e28-9b28-4afd275a09e9</testCaseGuid>
+</TestCaseEntity>
