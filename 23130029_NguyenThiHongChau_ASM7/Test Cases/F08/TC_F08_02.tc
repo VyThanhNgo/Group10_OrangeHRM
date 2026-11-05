@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_02: Kiểm tra layout màn hình My Timesheets</description>
+   <name>TC_F08_02</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>1182f5d8-2b8e-41d2-ad73-6f2a47b27af4</testCaseGuid>
+</TestCaseEntity>

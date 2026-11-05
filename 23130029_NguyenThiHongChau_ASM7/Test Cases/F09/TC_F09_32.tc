@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_32: Kiểm tra ESS không truy cập được trang duyệt timesheet của người khác</description>
+   <name>TC_F09_32</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>bf1d6211-0cf9-4dc1-81fc-18245730315d</testCaseGuid>
+</TestCaseEntity>

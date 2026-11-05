@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_04: Kiểm tra tạo timesheet hợp lệ: 1 hàng, 1 ngày, giờ nhập dạng HH:MM (08:00)</description>
+   <name>TC_F07_04</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>4ae90ae4-9665-4996-b6b5-cec592794fbe</testCaseGuid>
+</TestCaseEntity>

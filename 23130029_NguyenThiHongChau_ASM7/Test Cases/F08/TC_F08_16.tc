@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_16: Kiểm tra kỳ giao giữa hai năm (tuần chứa 31/12 và 01/01)</description>
+   <name>TC_F08_16</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>aec15b64-82f9-4891-aaf5-8fc06c879de6</testCaseGuid>
+</TestCaseEntity>

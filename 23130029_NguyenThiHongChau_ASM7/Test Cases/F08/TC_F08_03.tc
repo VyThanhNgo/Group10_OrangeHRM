@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_03: Kiểm tra truy cập Employee Timesheets bằng tài khoản Admin</description>
+   <name>TC_F08_03</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>d7cbb469-8841-40fb-a422-566e15cd09d6</testCaseGuid>
+</TestCaseEntity>
