@@ -1,0 +1,35 @@
+================================================================================
+BÁO CÁO TỔNG HỢP KIỂM THỬ TỰ ĐỘNG - GROUP 10 (ORANGEHRM)
+Thành viên thực hiện: Huỳnh Thị Ngọc Trân (MSSV: 23130342)
+Module phụ trách: TV4 - Recruitment (F10. Vacancy, F11. Candidate, F12. Candidate Status)
+Thời gian chạy: 05/11/2026 - Thời lượng: 359.10s (~6 phút)
+Trình duyệt: Chromium (Playwright Sync + Pytest)
+================================================================================
+Phân hệ / Chức năng                       PASSED  FAILED  SKIPPED   TỔNG   TỶ LỆ PASS
+05_Huynh_Thi_Ngoc_Tran_Recruitment            81       7        0     88       92.05%
+  - F10. Quản lý Vacancy                      29       1        0     30       96.67%
+  - F11. Thêm và tìm kiếm ứng viên            29       1        0     30       96.67%
+  - F12. Cập nhật trạng thái ứng viên         23       5        0     28       82.14%
+
+DANH SÁCH 7 TEST CASES FAILED (GHI NHẬN DEFECT TRONG SHEET DEFECT LIST):
+ 1. test_REC_VACANCY_030[chromium] (DEF_REC_001):
+    Xóa vacancy đang có ứng viên ứng tuyển. Hệ thống cho phép xóa mà không có cảnh báo ràng buộc dữ liệu.
+ 2. test_REC_CANDIDATE_026[chromium] (DEF_REC_002):
+    Lọc ứng viên theo Method of Application = "Manual" lọc sai hoặc không hiển thị đủ danh sách.
+ 3. test_REC_STATUS_018[chromium] (DEF_REC_003):
+    Lên lịch phỏng vấn với tên Interviewer không tồn tại, hệ thống không hiển thị thông báo lỗi "Invalid".
+ 4. test_REC_STATUS_019[chromium] (DEF_REC_004):
+    Lên lịch phỏng vấn nhập Date sai định dạng "abc", hệ thống không kiểm tra định dạng ngày hợp lệ.
+ 5. test_REC_STATUS_020[chromium] (DEF_REC_005):
+    Shortlist ứng viên nhập Notes vượt quá 250 ký tự (251 ký tự), không hiển thị lỗi "Should not exceed 250 characters".
+ 6. test_REC_STATUS_022[chromium] (DEF_REC_006):
+    Ứng viên đã ở trạng thái "Hired" nhưng hệ thống vẫn hiển thị các nút chuyển trạng thái không hợp lệ.
+ 7. test_REC_STATUS_028[chromium] (DEF_REC_007):
+    Lịch sử thay đổi trạng thái (Application Stage History) không hiển thị đầy đủ chi tiết người thực hiện và ghi chú.
+
+KẾT LUẬN:
+ - Tổng số Test Cases: 88
+ - Test Coverage: 100% (88/88 test cases được tự động hóa và chạy thực tế)
+ - Successful Coverage: 92.05% (81 passed)
+ - Defect Rate: 7.95% (7 failed làm minh chứng phát hiện lỗi)
+================================================================================

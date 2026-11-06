@@ -1,0 +1,16 @@
+PS D:\Group10_OrangeHRM_Playwright_Python> pytest Group10_OrangeHRM_Playwright\tests\05_Huynh_Thi_Ngoc_Tran_Recruitment -n 4 -q --junitxml=reports/results.xml --html=reports/report.html --self-contained-html
+bringing up nodes...
+bringing up nodes...
+.............................F..........................F............... [ 81%]
+....F.F.F....FF.                                                         [100%]
+================================== FAILURES ===================================
+FAILED tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_manage_candidate.py::test_REC_CANDIDATE_026[chromium]
+FAILED tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_manage_vacancy.py::test_REC_VACANCY_030[chromium]
+FAILED tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_update_candidate_status.py::test_REC_STATUS_019[chromium]
+FAILED tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_update_candidate_status.py::test_REC_STATUS_020[chromium]
+FAILED tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_update_candidate_status.py::test_REC_STATUS_018[chromium]
+FAILED tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_update_candidate_status.py::test_REC_STATUS_028[chromium]
+FAILED tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_update_candidate_status.py::test_REC_STATUS_022[chromium]
+- Generated html report: file:///D:/Group10_OrangeHRM_Playwright_Python/reports/report.html -
+=========================== short test summary info ===========================
+7 failed, 81 passed in 359.10s (0:05:59)

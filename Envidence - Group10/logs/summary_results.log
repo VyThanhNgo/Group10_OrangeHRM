@@ -1,0 +1,11 @@
+Thành viên                                PASSED  FAILED  SKIPPED   TOTAL   PASS RATE
+05_Huynh_Thi_Ngoc_Tran_Recruitment            81       7        0      88      92.05%
+
+Test FAILED (Designated Defects):
+ - test_REC_VACANCY_030[chromium] (DEF_REC_001)
+ - test_REC_CANDIDATE_026[chromium] (DEF_REC_002)
+ - test_REC_STATUS_018[chromium] (DEF_REC_003)
+ - test_REC_STATUS_019[chromium] (DEF_REC_004)
+ - test_REC_STATUS_020[chromium] (DEF_REC_005)
+ - test_REC_STATUS_022[chromium] (DEF_REC_006)
+ - test_REC_STATUS_028[chromium] (DEF_REC_007)
