@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_24: Kiểm tra nhân viên chưa có timesheet ('Test Employee2')</description>
+   <name>TC_F08_24</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>ad154b8d-f077-46de-96c6-32271a3f360c</testCaseGuid>
+</TestCaseEntity>

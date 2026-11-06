@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_39: Kiểm tra XSS trong comment: &lt;script&gt;alert('xss')&lt;/script&gt;</description>
+   <name>TC_F07_39</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>dc8f5e64-758a-41b1-9164-d5cb31fc1b17</testCaseGuid>
+</TestCaseEntity>

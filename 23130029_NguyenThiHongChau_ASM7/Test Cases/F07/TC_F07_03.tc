@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_03: Kiểm tra giá trị mặc định trên màn hình Edit Timesheet</description>
+   <name>TC_F07_03</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>ac433e4d-fd42-4729-9ffa-dc1468f362c8</testCaseGuid>
+</TestCaseEntity>

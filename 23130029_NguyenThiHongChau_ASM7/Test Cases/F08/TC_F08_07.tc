@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_07: Kiểm tra gợi ý khi gõ một phần tên</description>
+   <name>TC_F08_07</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>ada7c947-d73e-4cba-866a-940a88ec19e2</testCaseGuid>
+</TestCaseEntity>

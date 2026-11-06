@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_28: Kiểm tra lưu khi đã chọn Project nhưng bỏ trống Activity</description>
+   <name>TC_F07_28</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>a84346c4-82bb-4046-9531-8cc10a1bd80f</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_15: Kiểm tra click [Reset] khi đang nhập dữ liệu</description>
+   <name>TC_F07_15</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>13507ddd-8338-47b8-8bb5-fcca2b5711e9</testCaseGuid>
+</TestCaseEntity>
