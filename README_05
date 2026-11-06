@@ -1,0 +1,91 @@
+================================================================================
+HƯỚNG DẪN CÀI ĐẶT, CẤU HÌNH VÀ CHẠY PROJECT KIỂM THỬ TỰ ĐỘNG
+BÁO CÁO THỰC THI KIỂM THỬ TỰ ĐỘNG - GROUP 10
+================================================================================
+
+1. THÔNG TIN CHUNG
+- Dự án kiểm thử: OrangeHRM Open Source (Web Application)
+- Website Demo: https://opensource-demo.orangehrmlive.com
+- Tài khoản đăng nhập hệ thống: Admin / admin123
+- Giảng viên hướng dẫn / Reviewer: Cô Trần Thị Thanh Nga
+- Nhóm thực hiện: Group 10
+- Sinh viên phụ trách: Huỳnh Thị Ngọc Trân (MSSV: 23130342)
+- Nhánh Git cá nhân: 23130342_HuynhThiNgocTran | Repository nhánh chung: dev
+- Công nghệ sử dụng: Python 3.10+, Playwright (Sync API), Pytest, Pytest-HTML, OpenPyXL.
+
+================================================================================
+2. PHẠM VI KIỂM THỬ ĐƯỢC PHÂN CÔNG (MODULE TV4 - RECRUITMENT)
+Huỳnh Thị Ngọc Trân phụ trách trọn vẹn 3 chức năng thuộc phân hệ Tuyển dụng (Recruitment),
+bao gồm chính xác 88 Test Cases (đáp ứng đúng chuẩn 20–30 TC/chức năng):
+
+1. F10. Quản lý Vacancy (test_recruitment_manage_vacancy.py - 30 TC):
+   - Tiền tố ID: REC_VACANCY_001 -> REC_VACANCY_030
+   - Kiểm tra điều hướng, hiển thị danh sách, bộ lọc tìm kiếm, thêm vacancy (đầy đủ/bắt buộc/biên/tiếng Việt/tiêu cực/XSS/cancel/save liên tiếp), tìm kiếm lọc (Job Title, Hiring Manager, Status Active/Closed), sửa vacancy, xóa vacancy và xóa có ràng buộc ứng viên.
+   - Kết quả: 29 PASSED, 1 FAILED (DEF_REC_001 - REC_VACANCY_030).
+
+2. F11. Thêm và tìm kiếm ứng viên (test_recruitment_manage_candidate.py - 30 TC):
+   - Tiền tố ID: REC_CANDIDATE_001 -> REC_CANDIDATE_030
+   - Kiểm tra giao diện form, thêm ứng viên (hợp lệ, trống bắt buộc, gắn vacancy, upload Resume .pdf/.docx/.txt, giới hạn file 1MB, tên tiếng Việt có dấu, validate bắt buộc, email sai định dạng, contact number, date sai định dạng, XSS), tìm kiếm theo tên, Job Title, Vacancy, Status, Keywords, Date, xem chi tiết và xóa ứng viên.
+   - Kết quả: 29 PASSED, 1 FAILED (DEF_REC_002 - REC_CANDIDATE_026).
+
+3. F12. Cập nhật trạng thái ứng viên (test_recruitment_update_candidate_status.py - 28 TC):
+   - Tiền tố ID: REC_STATUS_001 -> REC_STATUS_028
+   - Kiểm tra toàn bộ vòng đời ứng viên: Application Initiated -> Shortlisted -> Interview Scheduled -> Interview Passed -> Job Offered -> Hired -> Rejected / Offer Declined. Kiểm tra validation bỏ trống/sai interviewer, ngày sai, notes vượt 250 ký tự, nút sai workflow, đồng bộ danh sách Candidates và lịch sử Application Stage History.
+   - Kết quả: 23 PASSED, 5 FAILED (DEF_REC_003 -> DEF_REC_007).
+
+TỔNG KẾT SUITE CÁ NHÂN: 88 Test Cases | 81 PASSED (92.05%) | 7 FAILED (7.95% - Làm Defect nghiệp vụ) | 0 SKIPPED.
+
+
+================================================================================
+3. CÀI ĐẶT MÔI TRƯỜNG & CHUẨN BỊ
+================================================================================
+Mở Command Prompt hoặc PowerShell tại thư mục:
+cd D:\Group10_OrangeHRM_Playwright_Python\Group10_OrangeHRM_Playwright
+
+Cài đặt thư viện:
+pip install pytest pytest-playwright pytest-html pytest-xdist openpyxl pillow
+playwright install chromium
+
+================================================================================
+4. HƯỚNG DẪN THỰC THI KIỂM THỬ (CHẠY TEST CÓ HIỆN GIAO DIỆN)
+================================================================================
+Lưu ý: Chỉ chạy 3 file test của Huỳnh Thị Ngọc Trân, hoàn toàn KHÔNG đụng chạm
+hay ảnh hưởng đến code của 4 thành viên còn lại.
+
+1. Lệnh chạy toàn bộ 88 Test Cases (Hiện giao diện trình duyệt Headed + Xuất Báo Cáo):
+pytest tests/05_Huynh_Thi_Ngoc_Tran_Recruitment --headed --html=reports/report.html --self-contained-html --junitxml=reports/results.xml
+
+2. Lệnh chạy nhanh (Headless mode):
+pytest tests/05_Huynh_Thi_Ngoc_Tran_Recruitment --html=reports/report.html --self-contained-html --junitxml=reports/results.xml
+
+3. Lệnh chạy song song đa luồng (4 workers):
+pytest tests/05_Huynh_Thi_Ngoc_Tran_Recruitment -n 4 --html=reports/report.html --self-contained-html
+
+4. Lệnh chạy riêng lẻ từng chức năng (có giao diện):
+- F10. Quản lý Vacancy (30 TC):
+  pytest tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_manage_vacancy.py --headed
+- F11. Thêm & Tìm kiếm Ứng viên (30 TC):
+  pytest tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_manage_candidate.py --headed
+- F12. Cập nhật trạng thái Ứng viên (28 TC):
+  pytest tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_update_candidate_status.py --headed
+
+5. Lệnh chạy 1 Test Case cụ thể (Ví dụ chạy Test Case phát hiện defect):
+pytest tests/05_Huynh_Thi_Ngoc_Tran_Recruitment/test_recruitment_manage_vacancy.py -k "test_REC_VACANCY_030" --headed
+
+================================================================================
+5. DANH SÁCH 7 DEFECT ĐÃ ĐƯỢC TỰ ĐỘNG HÓA VÀ XÁC NHẬN
+================================================================================
+1. DEF_REC_001 (REC_VACANCY_030 - F10. Vacancy):
+   Cho phép xóa Vacancy đang có ứng viên ứng tuyển mà không có cảnh báo ràng buộc dữ liệu. (Critical - Open)
+2. DEF_REC_002 (REC_CANDIDATE_026 - F11. Candidate):
+   Bộ lọc Method of Application = "Manual" lọc sai hoặc không hiển thị đủ danh sách ứng viên. (Major - Open)
+3. DEF_REC_003 (REC_STATUS_018 - F12. Candidate Status):
+   Không hiển thị lỗi "Invalid" khi nhập tên Interviewer không tồn tại trong hệ thống. (Major - Open)
+4. DEF_REC_004 (REC_STATUS_019 - F12. Candidate Status):
+   Không hiển thị lỗi định dạng ngày hợp lệ khi nhập chuỗi ký tự "abc" vào trường Date. (Medium - Open)
+5. DEF_REC_005 (REC_STATUS_020 - F12. Candidate Status):
+   Không hiển thị thông báo lỗi giới hạn khi Notes vượt quá 250 ký tự (nhập 251 ký tự). (Medium - Open)
+6. DEF_REC_006 (REC_STATUS_022 - F12. Candidate Status):
+   Ứng viên ở trạng thái "Hired" vẫn còn hiển thị các nút thao tác chuyển trạng thái không hợp lệ. (Major - Open)
+7. DEF_REC_007 (REC_STATUS_028 - F12. Candidate Status):
+   Lịch sử Application Stage History không hiển thị đầy đủ chi tiết người thực hiện và ghi chú. (Medium - Open)
