@@ -1,0 +1,1057 @@
+ 																									
+Module Code	Admin – Quản trị hệ thống							Pass																	
+Test requirement	F13. Tạo tài khoản hệ thống							Fail																	
+Req ID	REQ-ADM-01							Pending																	
+Tester	Ngô Thanh Vy							Untested																	
+Pass	Fail	Untested	Pending	N/A	Number of Test cases			N/A																	
+29	0	0	0	0	29			Cancel																	
+																									
+Test Case ID	Test Case Description	Test Case Procedure	Expected Output	Inter-test case Dependence	Result	Test date	Priority	Note																	
+Chrome																									
+																									
+	1.1. Điều hướng & Hiển thị form																								
+	Đăng nhập & Điều hướng																								
+TC_ADM_CREATE_001	Kiểm tra đăng nhập bằng tài khoản Admin và truy cập module Admin	"1. Truy cập https://opensource-demo.orangehrmlive.com.
+2. Nhập Username ""Admin"", Password ""admin123"".
+3. Click [Login].
+4. Click menu ""Admin"" ở thanh menu bên trái."	Đăng nhập thành công và chuyển đến Dashboard. Sau khi chọn menu Admin, hệ thống hiển thị trang Admin > User Management > Users với tiêu đề "System Users" và danh sách tài khoản.		Pass	27/10/2026	High	Positive																	
+TC_ADM_CREATE_002	Kiểm tra click nút [+ Add] mở form thêm tài khoản hệ thống	"1. Tại trang System Users, click nút [+ Add].
+2. Quan sát phản hồi của hệ thống."	Hệ thống chuyển sang trang Add User (/admin/saveSystemUser), hiển thị tiêu đề "Add User"; trang tải đầy đủ, không phát sinh lỗi.	TC_ADM_CREATE_001	Pass	27/10/2026	High	Positive																	
+	Hiển thị form																								
+TC_ADM_CREATE_003	Kiểm tra bố cục giao diện form Add User	Quan sát toàn bộ form Add User.	Hiển thị đầy đủ các trường: User Role*, Employee Name*, Status*, Username*, Password*, Confirm Password*; có chú thích "* Required"; có nút [Cancel] và [Save]. Các trường bắt buộc có dấu *, bố cục căn chỉnh đúng thiết kế.	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Positive																	
+TC_ADM_CREATE_004	Kiểm tra giá trị mặc định và danh sách lựa chọn của dropdown User Role, Status	"1. Quan sát giá trị mặc định của các trường.
+2. Click lần lượt dropdown [User Role] và [Status] để xem danh sách lựa chọn."	User Role và Status mặc định "-- Select --"; Employee Name hiển thị placeholder "Type for hints..."; Username, Password, Confirm Password để trống. [User Role] gồm: Admin, ESS; [Status] gồm: Enabled, Disabled.	TC_ADM_CREATE_002	Pass	27/10/2026	Low	Positive																	
+	Hủy thao tác																								
+TC_ADM_CREATE_005	Kiểm tra nút [Cancel] hủy việc tạo tài khoản	"1. Tại form Add User, nhập Username ""g10tv5_cancel"" và chọn User Role ""ESS"".
+2. Click [Cancel].
+3. Tại trang System Users, tìm kiếm Username ""g10tv5_cancel""."	Hệ thống quay lại trang System Users, không hiển thị thông báo lưu. Tìm kiếm không có kết quả ("No Records Found") - tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	Low	Positive																	
+	1.2. Tạo tài khoản hợp lệ																								
+	Tạo theo vai trò & trạng thái																								
+TC_ADM_CREATE_006	Kiểm tra tạo tài khoản User Role "Admin", Status "Enabled" với dữ liệu hợp lệ	"1. Tại form Add User, chọn User Role ""Admin"".
+2. Nhập Employee Name: gõ ký tự đầu và chọn 1 nhân viên chưa có tài khoản trong danh sách gợi ý.
+3. Chọn Status ""Enabled"".
+4. Nhập Username ""g10tv5_admin01"", Password ""Test@12345"", Confirm Password ""Test@12345"".
+5. Click [Save]."	Hiển thị thông báo "Successfully Saved"; hệ thống quay lại trang System Users; tài khoản "g10tv5_admin01" xuất hiện trong danh sách với User Role "Admin", Status "Enabled" và đúng Employee Name đã chọn.	TC_ADM_CREATE_003	Pass	27/10/2026	High	Positive																	
+TC_ADM_CREATE_007	Kiểm tra tạo tài khoản User Role "ESS", Status "Enabled" với dữ liệu hợp lệ	"1. Tại form Add User, chọn User Role ""ESS"".
+2. Chọn 1 nhân viên chưa có tài khoản ở Employee Name.
+3. Chọn Status ""Enabled"".
+4. Nhập Username ""g10tv5_ess01"", Password ""Test@12345"", Confirm Password ""Test@12345"".
+5. Click [Save]."	Hiển thị thông báo "Successfully Saved"; tài khoản "g10tv5_ess01" xuất hiện trong danh sách với User Role "ESS", Status "Enabled".	TC_ADM_CREATE_003	Pass	27/10/2026	High	Positive																	
+TC_ADM_CREATE_008	Kiểm tra tạo tài khoản với Status "Disabled"	"1. Tại form Add User, chọn User Role ""ESS"", chọn 1 nhân viên chưa có tài khoản.
+2. Chọn Status ""Disabled"".
+3. Nhập Username ""g10tv5_off01"", Password ""Test@12345"", Confirm Password ""Test@12345"".
+4. Click [Save]."	Hiển thị thông báo "Successfully Saved"; tài khoản "g10tv5_off01" xuất hiện trong danh sách với Status "Disabled".	TC_ADM_CREATE_003	Pass	27/10/2026	Medium	Positive																	
+	Hiệu lực tài khoản sau khi tạo																								
+TC_ADM_CREATE_009	Kiểm tra đăng nhập bằng tài khoản ESS vừa tạo (Status "Enabled")	"1. Đăng xuất (click tên người dùng góc phải > Logout).
+2. Đăng nhập với Username ""g10tv5_ess01"", Password ""Test@12345""."	Đăng nhập thành công, chuyển đến Dashboard; tên người dùng hiển thị đúng theo nhân viên đã gán cho tài khoản.	TC_ADM_CREATE_007	Pass	27/10/2026	High	Positive																	
+TC_ADM_CREATE_010	Kiểm tra không đăng nhập được bằng tài khoản có Status "Disabled"	"1. Đăng xuất.
+2. Đăng nhập với Username ""g10tv5_off01"", Password ""Test@12345""."	Đăng nhập thất bại, hiển thị thông báo lỗi "Account disabled"; người dùng không vào được hệ thống.	TC_ADM_CREATE_008	Pass	27/10/2026	High	Negative																	
+	1.3. Trường Employee Name																								
+	Gợi ý nhân viên																								
+TC_ADM_CREATE_011	Kiểm tra hiển thị gợi ý (autocomplete) khi nhập Employee Name	"1. Click ô Employee Name, nhập 1-2 ký tự (VD: ""a"").
+2. Quan sát danh sách gợi ý.
+3. Chọn một nhân viên trong danh sách."	Hiển thị danh sách nhân viên khớp từ khóa; khi chọn, họ tên đầy đủ của nhân viên được điền vào ô Employee Name.	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Positive																	
+	Employee không hợp lệ																								
+TC_ADM_CREATE_012	Kiểm tra nhập Employee Name không tồn tại trong hệ thống	"1. Nhập Employee Name ""zzzxxx999"" (không chọn từ gợi ý).
+2. Điền các trường còn lại hợp lệ.
+3. Click [Save]."	Danh sách gợi ý hiển thị "No Records Found"; ô Employee Name báo lỗi "Invalid"; tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	High	Negative																	
+TC_ADM_CREATE_013	Kiểm tra tạo tài khoản cho nhân viên đã có tài khoản hệ thống	"1. Chọn Employee Name là nhân viên đã được gán cho tài khoản ""g10tv5_ess01"".
+2. Điền các trường còn lại hợp lệ với Username mới ""g10tv5_dupemp"".
+3. Click [Save]."	Hệ thống không cho tạo; hiển thị lỗi tại ô Employee Name (nhân viên đã có tài khoản, VD: "Already exists"); không phát sinh bản ghi mới trong danh sách.	TC_ADM_CREATE_007	Pass	27/10/2026	Medium	Negative																	
+	1.4. Kiểm tra trường bắt buộc																								
+	Bỏ trống dữ liệu																								
+TC_ADM_CREATE_014	Kiểm tra bấm [Save] khi bỏ trống toàn bộ các trường	"1. Mở form Add User, không nhập dữ liệu.
+2. Click [Save]."	Hệ thống không lưu dữ liệu; hiển thị thông báo "Required" màu đỏ dưới 6 trường: User Role, Employee Name, Status, Username, Password, Confirm Password; vẫn ở trang Add User.	TC_ADM_CREATE_002	Pass	27/10/2026	High	Negative																	
+TC_ADM_CREATE_015	Kiểm tra bấm [Save] khi chỉ bỏ trống Password và Confirm Password	"1. Chọn User Role ""ESS"", chọn Employee Name, chọn Status ""Enabled"", nhập Username ""g10tv5_nopass"".
+2. Để trống Password và Confirm Password.
+3. Click [Save]."	Không lưu dữ liệu; hiển thị "Required" tại ô Password và Confirm Password; các trường đã nhập được giữ nguyên.	TC_ADM_CREATE_002	Pass	27/10/2026	High	Negative																	
+	1.5. Kiểm tra trường Username																								
+	Trùng lặp Username																								
+TC_ADM_CREATE_016	Kiểm tra tạo tài khoản với Username đã tồn tại	"1. Nhập Username ""Admin"" (đã tồn tại).
+2. Điền các trường còn lại hợp lệ.
+3. Click [Save]."	Ô Username hiển thị lỗi "Username already exists"; tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	High	Negative																	
+TC_ADM_CREATE_017	Kiểm tra Username trùng nhưng khác chữ hoa/thường	"1. Nhập Username ""ADMIN"".
+2. Điền các trường còn lại hợp lệ.
+3. Click [Save]."	Hệ thống xem là Username đã tồn tại (không phân biệt hoa/thường), hiển thị "Username already exists"; tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Edge case																	
+	Giá trị biên độ dài Username																								
+TC_ADM_CREATE_018	Kiểm tra Username có 4 ký tự (nhỏ hơn giá trị tối thiểu)	"1. Nhập Username ""g10t"" (4 ký tự).
+2. Điền các trường còn lại hợp lệ.
+3. Click [Save]."	Ô Username hiển thị lỗi "Should be at least 5 characters"; tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	High	Edge case																	
+TC_ADM_CREATE_019	Kiểm tra Username có đúng 5 ký tự (giá trị tối thiểu)	"1. Nhập Username ""g10t5"" (5 ký tự).
+2. Điền các trường còn lại hợp lệ (chọn nhân viên chưa có tài khoản).
+3. Click [Save]."	Hiển thị "Successfully Saved"; tài khoản "g10t5" được tạo và hiển thị trong danh sách.	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Edge case																	
+TC_ADM_CREATE_020	Kiểm tra Username có đúng 40 ký tự (giá trị tối đa)	"1. Nhập Username gồm 40 ký tự: ""g10tv5_uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"".
+2. Điền các trường còn lại hợp lệ (chọn nhân viên chưa có tài khoản).
+3. Click [Save]."	Hiển thị "Successfully Saved"; tài khoản được tạo với đầy đủ 40 ký tự, hiển thị đúng trong danh sách.	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Edge case																	
+TC_ADM_CREATE_021	Kiểm tra Username có 41 ký tự (vượt quá giá trị tối đa)	"1. Nhập Username gồm 41 ký tự: ""g10tv5_uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuux"".
+2. Điền các trường còn lại hợp lệ.
+3. Click [Save]."	Ô Username hiển thị lỗi "Should not exceed 40 characters"; tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Edge case																	
+	Ký tự đặc biệt & bảo mật																								
+TC_ADM_CREATE_022	Kiểm tra nhập mã script (XSS) vào ô Username	"1. Nhập Username ""<script>alert('xss')</script>"".
+2. Điền các trường còn lại hợp lệ.
+3. Click [Save].
+4. Quan sát trang System Users."	Hệ thống không thực thi script (không xuất hiện hộp thoại alert); dữ liệu được từ chối hoặc lưu dưới dạng văn bản thuần; không phát sinh lỗi hệ thống (HTTP 500); danh sách hiển thị bình thường.	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Negative																	
+	1.6. Kiểm tra trường Password																								
+	Độ dài mật khẩu																								
+TC_ADM_CREATE_023	Kiểm tra Password có 6 ký tự (nhỏ hơn giá trị tối thiểu)	"1. Nhập Password và Confirm Password ""Ab@123"" (6 ký tự).
+2. Điền các trường còn lại hợp lệ.
+3. Click [Save]."	Ô Password hiển thị lỗi "Should have at least 7 characters"; tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	High	Edge case																	
+TC_ADM_CREATE_024	Kiểm tra Password có đúng 7 ký tự (giá trị tối thiểu) và đạt yêu cầu độ mạnh	"1. Nhập Password và Confirm Password ""Ab@1234"" (7 ký tự).
+2. Nhập Username ""g10tv5_pw7"", điền các trường còn lại hợp lệ.
+3. Click [Save]."	Hiển thị "Successfully Saved"; tài khoản "g10tv5_pw7" được tạo thành công.	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Edge case																	
+TC_ADM_CREATE_025	Kiểm tra Password có 65 ký tự (vượt quá giá trị tối đa)	"1. Nhập Password và Confirm Password là chuỗi 65 ký tự (VD: ""Test@123"" + 57 ký tự ""a"").
+2. Điền các trường còn lại hợp lệ.
+3. Click [Save]."	Ô Password hiển thị lỗi "Should not exceed 64 characters"; tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Edge case																	
+	Độ mạnh mật khẩu																								
+TC_ADM_CREATE_026	Kiểm tra Password không chứa chữ số (không đạt chính sách mật khẩu)	"1. Nhập Password và Confirm Password ""Abcdefgh"".
+2. Điền các trường còn lại hợp lệ.
+3. Click [Save]."	Hệ thống báo lỗi tại ô Password theo chính sách mật khẩu (VD: "Your password must contain minimum 1 number"); tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	High	Negative																	
+	Xác nhận mật khẩu																								
+TC_ADM_CREATE_027	Kiểm tra Confirm Password không khớp với Password	"1. Nhập Password ""Test@12345"".
+2. Nhập Confirm Password ""Test@54321"".
+3. Điền các trường còn lại hợp lệ và click [Save]."	Ô Confirm Password hiển thị lỗi "Passwords do not match"; tài khoản không được tạo.	TC_ADM_CREATE_002	Pass	27/10/2026	High	Negative																	
+	Hiển thị & bảo mật mật khẩu																								
+TC_ADM_CREATE_028	Kiểm tra mật khẩu được che (masked) và thanh đánh giá độ mạnh mật khẩu	"1. Nhập vào ô Password lần lượt: ""abc"", ""Abcdef1"", ""Test@12345"".
+2. Quan sát nội dung ô Password và thanh độ mạnh bên dưới."	Ký tự nhập vào hiển thị dạng che (•••), không lộ mật khẩu dạng văn bản; thanh độ mạnh thay đổi theo độ phức tạp của mật khẩu (từ mức yếu đến mạnh).	TC_ADM_CREATE_002	Pass	27/10/2026	Medium	Positive																	
+	1.7. Phân quyền truy cập																								
+	Giới hạn quyền của ESS																								
+TC_ADM_CREATE_029	Kiểm tra tài khoản User Role "ESS" không truy cập được module Admin	"1. Đăng nhập bằng tài khoản ESS ""g10tv5_ess01"".
+2. Quan sát thanh menu bên trái.
+3. Truy cập trực tiếp URL: https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers."	Menu "Admin" không hiển thị với tài khoản ESS; truy cập trực tiếp URL bị từ chối/chuyển hướng, không hiển thị danh sách tài khoản hệ thống.	TC_ADM_CREATE_009	Pass	27/10/2026	High	Negative																	
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
