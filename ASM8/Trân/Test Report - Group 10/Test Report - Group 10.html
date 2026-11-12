@@ -1,0 +1,2479 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Report - Group 10 | Playwright Automation Test Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563EB;
+      --primary-light: #EFF6FF;
+      --success: #10B981;
+      --success-light: #ECFDF5;
+      --danger: #EF4444;
+      --danger-light: #FEF2F2;
+      --warning: #F59E0B;
+      --warning-light: #FFFBEB;
+      --dark: #0F172A;
+      --slate-800: #1E293B;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #E2E8F0;
+      --slate-100: #F1F5F9;
+      --slate-50: #F8FAFC;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #F8FAFC;
+      color: #1E293B;
+      line-height: 1.5;
+      padding: 30px;
+    }
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .header {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      color: white;
+      padding: 32px 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .header-info h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      color: #F8FAFC;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-badge {
+      background: #2563EB;
+      font-size: 13px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .header-sub {
+      font-size: 14px;
+      color: #94A3B8;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .header-sub span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header-meta {
+      text-align: right;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 16px 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .header-meta .student {
+      font-size: 16px;
+      font-weight: 700;
+      color: #60A5FA;
+    }
+    .header-meta .instructor {
+      font-size: 13px;
+      color: #CBD5E1;
+      margin-top: 4px;
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .metric-card {
+      background: white;
+      padding: 20px 24px;
+      border-radius: 14px;
+      border: 1px solid var(--slate-200);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+    .card-total::before { background: var(--primary); }
+    .card-passed::before { background: var(--success); }
+    .card-failed::before { background: var(--danger); }
+    .card-rate::before { background: #8B5CF6; }
+    .card-time::before { background: #06B6D4; }
+
+    .metric-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-600);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+    .metric-desc {
+      font-size: 12px;
+      color: var(--slate-600);
+      margin-top: 6px;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      background: white;
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--slate-200);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--slate-200);
+      background: var(--slate-50);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-700);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover {
+      background: var(--slate-100);
+      border-color: #CBD5E1;
+    }
+    .tab-btn.active {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+    .search-input {
+      padding: 9px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--slate-200);
+      font-size: 13px;
+      min-width: 280px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    /* Table */
+    .table-card {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--slate-200);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03);
+      overflow: hidden;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    thead {
+      background: var(--slate-100);
+      border-bottom: 2px solid var(--slate-200);
+    }
+    th {
+      padding: 14px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--slate-700);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--slate-200);
+      transition: background 0.15s ease;
+    }
+    tbody tr:hover {
+      background: #F8FAFC;
+    }
+    tbody tr.failed-row {
+      background: #FFF5F5;
+    }
+    tbody tr.failed-row:hover {
+      background: #FEE2E2;
+    }
+    td {
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--slate-800);
+      vertical-align: middle;
+    }
+    .tc-id-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .status-pass {
+      background: var(--success-light);
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+    }
+    .status-fail {
+      background: var(--danger-light);
+      color: #991B1B;
+      border: 1px solid #FECACA;
+    }
+    .defect-badge {
+      background: #7F1D1D;
+      color: #FEE2E2;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+    .btn-evidence {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      background: var(--primary-light);
+      border: 1px solid #BFDBFE;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-evidence:hover {
+      background: #DBEAFE;
+      border-color: #93C5FD;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.15);
+    }
+    .failure-detail {
+      margin-top: 8px;
+      padding: 10px 14px;
+      background: white;
+      border-radius: 6px;
+      border-left: 4px solid var(--danger);
+      font-size: 12px;
+      color: #991B1B;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .failure-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .failure-msg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #7F1D1D;
+      word-break: break-all;
+    }
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--slate-600);
+      padding-bottom: 20px;
+    }
+
+    /* Lightbox Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(5px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      max-width: 1200px;
+      width: 100%;
+      max-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-header {
+      padding: 16px 24px;
+      background: #1E293B;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+    }
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .modal-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #F8FAFC;
+    }
+    .modal-desc {
+      font-size: 12px;
+      color: #94A3B8;
+      margin-top: 2px;
+    }
+    .modal-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-modal-action {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      color: #CBD5E1;
+      background: #334155;
+      border: 1px solid #475569;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .btn-modal-action:hover {
+      background: #475569;
+      color: white;
+    }
+    .btn-close {
+      background: #EF4444;
+      color: white;
+      border-color: #DC2626;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+    .btn-close:hover {
+      background: #DC2626;
+    }
+    .modal-body {
+      padding: 20px;
+      background: #0F172A;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 400px;
+    }
+    .modal-image {
+      max-width: 100%;
+      max-height: calc(90vh - 120px);
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-info">
+        <h1>
+          Test Report - Group 10
+          <span class="header-badge">Playwright Python</span>
+        </h1>
+        <div class="header-sub">
+          <span>📁 Project: OrangeHRM Automation Test Suite</span>
+          <span>🎯 Module: TV4 - Recruitment (Vacancy, Candidate, Status)</span>
+          <span>📅 Date: 05/11/2026</span>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="student">Huỳnh Thị Ngọc Trân - MSSV: 23130342</div>
+        <div class="instructor">GVHD: Cô Trần Thị Thanh Nga | Nhóm 10</div>
+      </div>
+    </div>
+
+    <!-- Summary Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card card-total">
+        <div class="metric-label">Tổng số Test Cases</div>
+        <div class="metric-value">88</div>
+        <div class="metric-desc">Đồng bộ 100% với file Excel TC</div>
+      </div>
+      <div class="metric-card card-passed">
+        <div class="metric-label">Passed (Thành công)</div>
+        <div class="metric-value" style="color: var(--success);">81</div>
+        <div class="metric-desc">Hoàn thành đầy đủ các bước kiểm thử</div>
+      </div>
+      <div class="metric-card card-failed">
+        <div class="metric-label">Failed (Phát hiện Defect)</div>
+        <div class="metric-value" style="color: var(--danger);">7</div>
+        <div class="metric-desc">7 Defect chuẩn nghiệp vụ & giao diện</div>
+      </div>
+      <div class="metric-card card-rate">
+        <div class="metric-label">Tỷ lệ Đạt (Pass Rate)</div>
+        <div class="metric-value" style="color: #7C3AED;">92.05%</div>
+        <div class="metric-desc">Đạt chuẩn chất lượng kiểm thử</div>
+      </div>
+      <div class="metric-card card-time">
+        <div class="metric-label">Thời gian thực thi</div>
+        <div class="metric-value" style="color: #0891B2;">1309.6s</div>
+        <div class="metric-desc">~5.98 phút (Chạy Headed / UI)</div>
+      </div>
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <div class="filter-tabs">
+        <button class="tab-btn active" onclick="filterTable('all')">Tất cả (88)</button>
+        <button class="tab-btn" onclick="filterTable('passed')">Passed (81)</button>
+        <button class="tab-btn" onclick="filterTable('failed')">Failed / Defect (7)</button>
+        <button class="tab-btn" onclick="filterTable('F10')">F10. Vacancy (30)</button>
+        <button class="tab-btn" onclick="filterTable('F11')">F11. Candidate (30)</button>
+        <button class="tab-btn" onclick="filterTable('F12')">F12. Status (28)</button>
+      </div>
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Tìm kiếm mã TC, mô tả hoặc hàm test..." onkeyup="searchTable()">
+    </div>
+
+    <!-- Table Card -->
+    <div class="table-card">
+      <table id="tcTable">
+        <thead>
+          <tr>
+            <th style="width: 50px;">#</th>
+            <th style="width: 170px;">Mã Test Case</th>
+            <th style="width: 170px;">Chức năng (Module)</th>
+            <th>Mô tả kiểm thử (Test Summary)</th>
+            <th style="width: 110px;">Kết quả</th>
+            <th style="width: 90px;">Thời gian</th>
+            <th style="width: 130px;">Minh chứng</th>
+          </tr>
+        </thead>
+        <tbody>
+
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">1</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_001</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra menu [Recruitment] hiển thị và truy cập được</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_001[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">7.95s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_001.png" onclick="openImageModal('REC_VACANCY_001', 'Kiểm tra menu [Recruitment] hiển thị và truy cập được', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">2</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_002</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra chuyển sang tab [Vacancies]</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_002[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.52s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_002.png" onclick="openImageModal('REC_VACANCY_002', 'Kiểm tra chuyển sang tab [Vacancies]', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">3</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_003</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra danh sách vacancy hiển thị đủ các cột và nút [+ Add]</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_003[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">4.39s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_003.png" onclick="openImageModal('REC_VACANCY_003', 'Kiểm tra danh sách vacancy hiển thị đủ các cột và nút [+ Add]', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">4</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_004</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bộ lọc hiển thị đủ các trường</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_004[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.15s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_004.png" onclick="openImageModal('REC_VACANCY_004', 'Kiểm tra bộ lọc hiển thị đủ các trường', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">5</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_005</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra thêm vacancy với đầy đủ thông tin hợp lệ</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_005[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">12.81s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_005.png" onclick="openImageModal('REC_VACANCY_005', 'Kiểm tra thêm vacancy với đầy đủ thông tin hợp lệ', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">6</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_006</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra thêm vacancy chỉ với các trường bắt buộc</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_006[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">10.79s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_006.png" onclick="openImageModal('REC_VACANCY_006', 'Kiểm tra thêm vacancy chỉ với các trường bắt buộc', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">7</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_007</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Vacancy Name chứa ký tự tiếng Việt có dấu và số</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_007[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">13.29s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_007.png" onclick="openImageModal('REC_VACANCY_007', 'Kiểm tra Vacancy Name chứa ký tự tiếng Việt có dấu và số', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">8</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_008</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bỏ trống Vacancy Name</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_008[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.63s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_008.png" onclick="openImageModal('REC_VACANCY_008', 'Kiểm tra bỏ trống Vacancy Name', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">9</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_009</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bỏ trống Job Title</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_009[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.92s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_009.png" onclick="openImageModal('REC_VACANCY_009', 'Kiểm tra bỏ trống Job Title', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">10</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_010</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bỏ trống Hiring Manager</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_010[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.19s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_010.png" onclick="openImageModal('REC_VACANCY_010', 'Kiểm tra bỏ trống Hiring Manager', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">11</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_011</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhập Hiring Manager không tồn tại</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_011[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.27s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_011.png" onclick="openImageModal('REC_VACANCY_011', 'Kiểm tra nhập Hiring Manager không tồn tại', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">12</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_012</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Vacancy Name trùng vacancy đã tồn tại</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_012[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">14.49s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_012.png" onclick="openImageModal('REC_VACANCY_012', 'Kiểm tra Vacancy Name trùng vacancy đã tồn tại', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">13</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_013</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Vacancy Name vượt độ dài tối đa (51 ký tự)</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_013[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">4.83s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_013.png" onclick="openImageModal('REC_VACANCY_013', 'Kiểm tra Vacancy Name vượt độ dài tối đa (51 ký tự)', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">14</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_014</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Vacancy Name chứa mã script (XSS)</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_014[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.23s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_014.png" onclick="openImageModal('REC_VACANCY_014', 'Kiểm tra Vacancy Name chứa mã script (XSS)', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">15</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_015</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhấn [Cancel] khi đang thêm vacancy</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_015[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.13s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_015.png" onclick="openImageModal('REC_VACANCY_015', 'Kiểm tra nhấn [Cancel] khi đang thêm vacancy', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">16</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_016</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc theo Job Title</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_016[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.58s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_016.png" onclick="openImageModal('REC_VACANCY_016', 'Kiểm tra lọc theo Job Title', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">17</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_017</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc theo Vacancy</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_017[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">13.63s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_017.png" onclick="openImageModal('REC_VACANCY_017', 'Kiểm tra lọc theo Vacancy', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">18</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_018</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc theo Hiring Manager</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_018[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.64s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_018.png" onclick="openImageModal('REC_VACANCY_018', 'Kiểm tra lọc theo Hiring Manager', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">19</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_019</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc theo Status (Active và Closed)</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_019[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.43s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_019.png" onclick="openImageModal('REC_VACANCY_019', 'Kiểm tra lọc theo Status (Active và Closed)', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">20</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_020</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra kết hợp nhiều tiêu chí lọc</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_020[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.51s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_020.png" onclick="openImageModal('REC_VACANCY_020', 'Kiểm tra kết hợp nhiều tiêu chí lọc', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">21</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_021</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhấn [Reset] xóa bộ lọc</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_021[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">4.79s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_021.png" onclick="openImageModal('REC_VACANCY_021', 'Kiểm tra nhấn [Reset] xóa bộ lọc', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">22</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_022</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc không có kết quả</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_022[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.51s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_022.png" onclick="openImageModal('REC_VACANCY_022', 'Kiểm tra lọc không có kết quả', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">23</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_023</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra sửa Vacancy Name và Description hợp lệ</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_023[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">24.87s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_023.png" onclick="openImageModal('REC_VACANCY_023', 'Kiểm tra sửa Vacancy Name và Description hợp lệ', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">24</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_024</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra tắt Active, trạng thái vacancy chuyển Closed</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_024[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">26.32s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_024.png" onclick="openImageModal('REC_VACANCY_024', 'Kiểm tra tắt Active, trạng thái vacancy chuyển Closed', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">25</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_025</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra sửa Vacancy Name trùng vacancy khác</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_025[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">25.31s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_025.png" onclick="openImageModal('REC_VACANCY_025', 'Kiểm tra sửa Vacancy Name trùng vacancy khác', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">26</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_026</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra xóa trống trường bắt buộc khi sửa</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_026[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">15.55s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_026.png" onclick="openImageModal('REC_VACANCY_026', 'Kiểm tra xóa trống trường bắt buộc khi sửa', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">27</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_027</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhấn [Cancel] khi sửa vacancy</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_027[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">19.46s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_027.png" onclick="openImageModal('REC_VACANCY_027', 'Kiểm tra nhấn [Cancel] khi sửa vacancy', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">28</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_028</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra xóa một vacancy và xác nhận xóa</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_028[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">16.47s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_028.png" onclick="openImageModal('REC_VACANCY_028', 'Kiểm tra xóa một vacancy và xác nhận xóa', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">29</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_029</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhấn [Cancel] ở popup xác nhận xóa</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_029[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">13.17s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_029.png" onclick="openImageModal('REC_VACANCY_029', 'Kiểm tra nhấn [Cancel] ở popup xác nhận xóa', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="failed-row" data-status="failed" data-module="VACANCY">
+                <td style="color: var(--slate-600); font-weight: 600;">30</td>
+                <td>
+                  <span class="tc-id-badge">REC_VACANCY_030</span>
+                </td>
+                <td><strong>F10. Vacancy</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra xóa vacancy đang có ứng viên ứng tuyển</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_VACANCY_030[chromium]</div>
+                  
+            <div class="failure-detail">
+              <div class="failure-title">🐛 Defect [DEF_REC_001]: Xóa Vacancy có ứng viên</div>
+              <div style="margin-bottom: 4px;">Hệ thống cho phép xóa Vacancy đang có ứng viên ứng tuyển mà không có cảnh báo ràng buộc dữ liệu.</div>
+              <div class="failure-msg">AssertionError: Defect nghiệp vụ: Hệ thống cho phép xóa Vacancy đang có ứng viên ứng tuyển mà không có cảnh báo ràng buộc dữ liệu.</div>
+            </div>
+            
+                </td>
+                <td><span class="status-badge status-fail">✖ FAILED</span><span class="defect-badge">DEF_REC_001</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">19.26s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_VACANCY_030.png" onclick="openImageModal('REC_VACANCY_030', 'Kiểm tra xóa vacancy đang có ứng viên ứng tuyển', 'FAILED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">31</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_001</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra danh sách ứng viên hiển thị đủ các cột</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_001[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.13s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_001.png" onclick="openImageModal('REC_CANDIDATE_001', 'Kiểm tra danh sách ứng viên hiển thị đủ các cột', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">32</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_002</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bộ lọc ứng viên hiển thị đủ các trường</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_002[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">9.91s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_002.png" onclick="openImageModal('REC_CANDIDATE_002', 'Kiểm tra bộ lọc ứng viên hiển thị đủ các trường', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">33</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_003</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra form [Add Candidate] hiển thị đủ các trường</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_003[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">4.25s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_003.png" onclick="openImageModal('REC_CANDIDATE_003', 'Kiểm tra form [Add Candidate] hiển thị đủ các trường', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">34</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_004</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra thêm ứng viên với đầy đủ thông tin hợp lệ</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_004[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">11.07s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_004.png" onclick="openImageModal('REC_CANDIDATE_004', 'Kiểm tra thêm ứng viên với đầy đủ thông tin hợp lệ', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">35</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_005</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra thêm ứng viên chỉ với trường bắt buộc</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_005[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">12.20s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_005.png" onclick="openImageModal('REC_CANDIDATE_005', 'Kiểm tra thêm ứng viên chỉ với trường bắt buộc', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">36</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_006</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra thêm ứng viên gắn với vacancy đã chọn</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_006[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">27.42s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_006.png" onclick="openImageModal('REC_CANDIDATE_006', 'Kiểm tra thêm ứng viên gắn với vacancy đã chọn', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">37</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_007</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra tải lên Resume đúng định dạng cho phép</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_007[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">10.95s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_007.png" onclick="openImageModal('REC_CANDIDATE_007', 'Kiểm tra tải lên Resume đúng định dạng cho phép', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">38</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_008</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra thêm ứng viên có tên tiếng Việt có dấu</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_008[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">15.16s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_008.png" onclick="openImageModal('REC_CANDIDATE_008', 'Kiểm tra thêm ứng viên có tên tiếng Việt có dấu', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">39</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_009</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bỏ trống First Name</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_009[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">4.32s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_009.png" onclick="openImageModal('REC_CANDIDATE_009', 'Kiểm tra bỏ trống First Name', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">40</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_010</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bỏ trống Last Name</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_010[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.44s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_010.png" onclick="openImageModal('REC_CANDIDATE_010', 'Kiểm tra bỏ trống Last Name', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">41</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_011</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bỏ trống Email</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_011[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.10s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_011.png" onclick="openImageModal('REC_CANDIDATE_011', 'Kiểm tra bỏ trống Email', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">42</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_012</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhập Email sai định dạng</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_012[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">10.56s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_012.png" onclick="openImageModal('REC_CANDIDATE_012', 'Kiểm tra nhập Email sai định dạng', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">43</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_013</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhập Contact Number chứa chữ cái</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_013[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">4.45s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_013.png" onclick="openImageModal('REC_CANDIDATE_013', 'Kiểm tra nhập Contact Number chứa chữ cái', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">44</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_014</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra First Name vượt độ dài tối đa (31 ký tự)</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_014[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.33s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_014.png" onclick="openImageModal('REC_CANDIDATE_014', 'Kiểm tra First Name vượt độ dài tối đa (31 ký tự)', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">45</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_015</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra tải lên Resume sai định dạng</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_015[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">4.15s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_015.png" onclick="openImageModal('REC_CANDIDATE_015', 'Kiểm tra tải lên Resume sai định dạng', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">46</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_016</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhập Date of Application sai định dạng</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_016[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.94s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_016.png" onclick="openImageModal('REC_CANDIDATE_016', 'Kiểm tra nhập Date of Application sai định dạng', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">47</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_017</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhập mã script vào Keywords và Notes (XSS)</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_017[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">12.55s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_017.png" onclick="openImageModal('REC_CANDIDATE_017', 'Kiểm tra nhập mã script vào Keywords và Notes (XSS)', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">48</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_018</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhấn [Cancel] khi đang thêm ứng viên</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_018[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">8.14s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_018.png" onclick="openImageModal('REC_CANDIDATE_018', 'Kiểm tra nhấn [Cancel] khi đang thêm ứng viên', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">49</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_019</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra tìm theo Candidate Name (chọn gợi ý)</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_019[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">17.84s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_019.png" onclick="openImageModal('REC_CANDIDATE_019', 'Kiểm tra tìm theo Candidate Name (chọn gợi ý)', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">50</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_020</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Candidate Name nhập tên không tồn tại</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_020[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.53s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_020.png" onclick="openImageModal('REC_CANDIDATE_020', 'Kiểm tra Candidate Name nhập tên không tồn tại', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">51</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_021</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc theo Job Title</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_021[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.56s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_021.png" onclick="openImageModal('REC_CANDIDATE_021', 'Kiểm tra lọc theo Job Title', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">52</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_022</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc theo Vacancy</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_022[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.57s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_022.png" onclick="openImageModal('REC_CANDIDATE_022', 'Kiểm tra lọc theo Vacancy', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">53</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_023</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc theo Hiring Manager</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_023[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.51s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_023.png" onclick="openImageModal('REC_CANDIDATE_023', 'Kiểm tra lọc theo Hiring Manager', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">54</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_024</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc theo Status</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_024[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.64s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_024.png" onclick="openImageModal('REC_CANDIDATE_024', 'Kiểm tra lọc theo Status', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">55</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_025</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra tìm theo Keywords</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_025[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.95s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_025.png" onclick="openImageModal('REC_CANDIDATE_025', 'Kiểm tra tìm theo Keywords', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="failed-row" data-status="failed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">56</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_026</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc theo Method of Application</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_026[chromium]</div>
+                  
+            <div class="failure-detail">
+              <div class="failure-title">🐛 Defect [DEF_REC_002]: Lọc Method of Application = Manual</div>
+              <div style="margin-bottom: 4px;">Bộ lọc Method of Application = &quot;Manual&quot; lọc sai hoặc không hiển thị đủ danh sách ứng viên.</div>
+              <div class="failure-msg">AssertionError: Defect phát hiện: Bộ lọc Method of Application = &quot;Manual&quot; lọc sai hoặc không hiển thị đủ danh sách ứng viên.</div>
+            </div>
+            
+                </td>
+                <td><span class="status-badge status-fail">✖ FAILED</span><span class="defect-badge">DEF_REC_002</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.00s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_026.png" onclick="openImageModal('REC_CANDIDATE_026', 'Kiểm tra lọc theo Method of Application', 'FAILED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">57</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_027</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra kết hợp nhiều tiêu chí tìm kiếm</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_027[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">5.85s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_027.png" onclick="openImageModal('REC_CANDIDATE_027', 'Kiểm tra kết hợp nhiều tiêu chí tìm kiếm', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">58</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_028</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra tìm kiếm không có kết quả</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_028[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">6.36s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_028.png" onclick="openImageModal('REC_CANDIDATE_028', 'Kiểm tra tìm kiếm không có kết quả', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">59</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_029</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra xem chi tiết ứng viên</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_029[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">16.73s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_029.png" onclick="openImageModal('REC_CANDIDATE_029', 'Kiểm tra xem chi tiết ứng viên', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="CANDIDATE">
+                <td style="color: var(--slate-600); font-weight: 600;">60</td>
+                <td>
+                  <span class="tc-id-badge">REC_CANDIDATE_030</span>
+                </td>
+                <td><strong>F11. Candidate</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra xóa ứng viên và xác nhận xóa</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_CANDIDATE_030[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">17.20s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_CANDIDATE_030.png" onclick="openImageModal('REC_CANDIDATE_030', 'Kiểm tra xóa ứng viên và xác nhận xóa', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">61</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_001</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra trạng thái ban đầu và các nút thao tác của ứng viên mới</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_001[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">10.13s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_001.png" onclick="openImageModal('REC_STATUS_001', 'Kiểm tra trạng thái ban đầu và các nút thao tác của ứng viên mới', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">62</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_002</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra thông tin ứng viên hiển thị đúng ở trang chi tiết</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_002[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">10.47s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_002.png" onclick="openImageModal('REC_STATUS_002', 'Kiểm tra thông tin ứng viên hiển thị đúng ở trang chi tiết', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">63</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_003</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Shortlist ứng viên kèm ghi chú</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_003[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">18.90s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_003.png" onclick="openImageModal('REC_STATUS_003', 'Kiểm tra Shortlist ứng viên kèm ghi chú', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">64</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_004</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Shortlist ứng viên không nhập ghi chú</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_004[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">19.00s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_004.png" onclick="openImageModal('REC_STATUS_004', 'Kiểm tra Shortlist ứng viên không nhập ghi chú', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">65</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_005</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Reject ứng viên ở trạng thái Application Initiated</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_005[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">17.49s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_005.png" onclick="openImageModal('REC_STATUS_005', 'Kiểm tra Reject ứng viên ở trạng thái Application Initiated', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">66</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_006</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Reject ứng viên ở trạng thái Shortlisted</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_006[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">27.33s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_006.png" onclick="openImageModal('REC_STATUS_006', 'Kiểm tra Reject ứng viên ở trạng thái Shortlisted', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">67</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_007</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lên lịch phỏng vấn với đầy đủ thông tin</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_007[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">27.87s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_007.png" onclick="openImageModal('REC_STATUS_007', 'Kiểm tra lên lịch phỏng vấn với đầy đủ thông tin', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">68</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_008</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lên lịch phỏng vấn chỉ với trường bắt buộc</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_008[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">28.07s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_008.png" onclick="openImageModal('REC_STATUS_008', 'Kiểm tra lên lịch phỏng vấn chỉ với trường bắt buộc', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">69</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_009</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra đánh dấu Interview Passed</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_009[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">33.41s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_009.png" onclick="openImageModal('REC_STATUS_009', 'Kiểm tra đánh dấu Interview Passed', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">70</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_010</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra đánh dấu Interview Failed</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_010[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">33.78s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_010.png" onclick="openImageModal('REC_STATUS_010', 'Kiểm tra đánh dấu Interview Failed', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">71</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_011</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Offer Job cho ứng viên Interview Passed</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_011[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">41.21s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_011.png" onclick="openImageModal('REC_STATUS_011', 'Kiểm tra Offer Job cho ứng viên Interview Passed', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">72</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_012</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Decline Offer</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_012[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">49.31s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_012.png" onclick="openImageModal('REC_STATUS_012', 'Kiểm tra Decline Offer', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">73</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_013</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Hire ứng viên</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_013[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">48.02s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_013.png" onclick="openImageModal('REC_STATUS_013', 'Kiểm tra Hire ứng viên', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">74</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_014</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra luồng đầy đủ: Initiated → Shortlisted → Interview Scheduled → Interview Passed → Job Offered → Hired</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_014[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">49.76s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_014.png" onclick="openImageModal('REC_STATUS_014', 'Kiểm tra luồng đầy đủ: Initiated → Shortlisted → Interview Scheduled → Interview Passed → Job Offered → Hired', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">75</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_015</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bỏ trống Interview Title</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_015[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">21.66s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_015.png" onclick="openImageModal('REC_STATUS_015', 'Kiểm tra bỏ trống Interview Title', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">76</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_016</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bỏ trống Interviewer</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_016[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">20.53s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_016.png" onclick="openImageModal('REC_STATUS_016', 'Kiểm tra bỏ trống Interviewer', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">77</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_017</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra bỏ trống Date</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_017[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">22.81s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_017.png" onclick="openImageModal('REC_STATUS_017', 'Kiểm tra bỏ trống Date', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="failed-row" data-status="failed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">78</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_018</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhập Interviewer không tồn tại</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_018[chromium]</div>
+                  
+            <div class="failure-detail">
+              <div class="failure-title">🐛 Defect [DEF_REC_003]: Interviewer không tồn tại</div>
+              <div style="margin-bottom: 4px;">Hệ thống không hiển thị lỗi &quot;Invalid&quot; khi người dùng nhập tên Interviewer không tồn tại trong danh sách nhân viên.</div>
+              <div class="failure-msg">AssertionError: Defect phát hiện: Hệ thống không hiển thị lỗi &quot;Invalid&quot; khi người dùng nhập tên Interviewer không tồn tại.</div>
+            </div>
+            
+                </td>
+                <td><span class="status-badge status-fail">✖ FAILED</span><span class="defect-badge">DEF_REC_003</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">22.88s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_018.png" onclick="openImageModal('REC_STATUS_018', 'Kiểm tra nhập Interviewer không tồn tại', 'FAILED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="failed-row" data-status="failed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">79</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_019</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhập Date sai định dạng</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_019[chromium]</div>
+                  
+            <div class="failure-detail">
+              <div class="failure-title">🐛 Defect [DEF_REC_004]: Định dạng ngày phỏng vấn không hợp lệ</div>
+              <div style="margin-bottom: 4px;">Hệ thống không hiển thị lỗi định dạng ngày hợp lệ khi nhập chuỗi &quot;abc&quot; vào trường Date phỏng vấn.</div>
+              <div class="failure-msg">AssertionError: Defect phát hiện: Hệ thống không hiển thị lỗi định dạng ngày hợp lệ khi nhập chuỗi &quot;abc&quot; vào trường Date phỏng vấn.</div>
+            </div>
+            
+                </td>
+                <td><span class="status-badge status-fail">✖ FAILED</span><span class="defect-badge">DEF_REC_004</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">21.27s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_019.png" onclick="openImageModal('REC_STATUS_019', 'Kiểm tra nhập Date sai định dạng', 'FAILED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="failed-row" data-status="failed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">80</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_020</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra Notes vượt độ dài tối đa (251 ký tự)</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_020[chromium]</div>
+                  
+            <div class="failure-detail">
+              <div class="failure-title">🐛 Defect [DEF_REC_005]: Notes vượt quá 250 ký tự</div>
+              <div style="margin-bottom: 4px;">Hệ thống không hiển thị thông báo lỗi &quot;Should not exceed 250 characters&quot; khi Notes vượt quá 250 ký tự.</div>
+              <div class="failure-msg">AssertionError: Defect phát hiện: Hệ thống không hiển thị thông báo lỗi &quot;Should not exceed 250 characters&quot; khi Notes vượt quá 250 ký tự.</div>
+            </div>
+            
+                </td>
+                <td><span class="status-badge status-fail">✖ FAILED</span><span class="defect-badge">DEF_REC_005</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">15.32s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_020.png" onclick="openImageModal('REC_STATUS_020', 'Kiểm tra Notes vượt độ dài tối đa (251 ký tự)', 'FAILED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">81</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_021</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhấn [Cancel] khi đang cập nhật trạng thái</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_021[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">16.30s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_021.png" onclick="openImageModal('REC_STATUS_021', 'Kiểm tra nhấn [Cancel] khi đang cập nhật trạng thái', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="failed-row" data-status="failed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">82</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_022</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra ứng viên Hired không còn thao tác chuyển trạng thái sai workflow</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_022[chromium]</div>
+                  
+            <div class="failure-detail">
+              <div class="failure-title">🐛 Defect [DEF_REC_006]: Workflow nút bấm ứng viên Hired</div>
+              <div style="margin-bottom: 4px;">Ứng viên ở trạng thái &quot;Hired&quot; vẫn còn hiển thị nút chuyển trạng thái không hợp lệ.</div>
+              <div class="failure-msg">AssertionError: Defect quy trình (Workflow): Ứng viên ở trạng thái &quot;Hired&quot; vẫn còn hiển thị nút chuyển trạng thái không hợp lệ.</div>
+            </div>
+            
+                </td>
+                <td><span class="status-badge status-fail">✖ FAILED</span><span class="defect-badge">DEF_REC_006</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">52.54s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_022.png" onclick="openImageModal('REC_STATUS_022', 'Kiểm tra ứng viên Hired không còn thao tác chuyển trạng thái sai workflow', 'FAILED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">83</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_023</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra các nút thao tác phù hợp với từng trạng thái hiện tại</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_023[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">12.29s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_023.png" onclick="openImageModal('REC_STATUS_023', 'Kiểm tra các nút thao tác phù hợp với từng trạng thái hiện tại', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">84</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_024</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra nhấn [Save] nhiều lần liên tiếp khi cập nhật trạng thái</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_024[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">19.86s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_024.png" onclick="openImageModal('REC_STATUS_024', 'Kiểm tra nhấn [Save] nhiều lần liên tiếp khi cập nhật trạng thái', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">85</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_025</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra tải lại trang (F5) sau khi cập nhật trạng thái</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_025[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">24.25s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_025.png" onclick="openImageModal('REC_STATUS_025', 'Kiểm tra tải lại trang (F5) sau khi cập nhật trạng thái', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">86</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_026</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra trạng thái được cập nhật ở danh sách Candidates</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_026[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">23.12s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_026.png" onclick="openImageModal('REC_STATUS_026', 'Kiểm tra trạng thái được cập nhật ở danh sách Candidates', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="" data-status="passed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">87</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_027</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lọc ứng viên theo trạng thái mới</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_027[chromium]</div>
+                  
+                </td>
+                <td><span class="status-badge status-pass">✔ PASSED</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">8.17s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_027.png" onclick="openImageModal('REC_STATUS_027', 'Kiểm tra lọc ứng viên theo trạng thái mới', 'PASSED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+              <tr class="failed-row" data-status="failed" data-module="STATUS">
+                <td style="color: var(--slate-600); font-weight: 600;">88</td>
+                <td>
+                  <span class="tc-id-badge">REC_STATUS_028</span>
+                </td>
+                <td><strong>F12. Candidate Status</strong></td>
+                <td>
+                  <div style="font-weight: 600; color: #1E293B;">Kiểm tra lịch sử thay đổi trạng thái</div>
+                  <div style="font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; margin-top: 2px;">test_REC_STATUS_028[chromium]</div>
+                  
+            <div class="failure-detail">
+              <div class="failure-title">🐛 Defect [DEF_REC_007]: Chi tiết lịch sử chuyển trạng thái</div>
+              <div style="margin-bottom: 4px;">Lịch sử thay đổi trạng thái (Application Stage History) không hiển thị đầy đủ chi tiết người thực hiện và ghi chú.</div>
+              <div class="failure-msg">AssertionError: Defect phát hiện: Lịch sử thay đổi trạng thái (Application Stage History) không hiển thị đầy đủ chi tiết người thực hiện và ghi chú.</div>
+            </div>
+            
+                </td>
+                <td><span class="status-badge status-fail">✖ FAILED</span><span class="defect-badge">DEF_REC_007</span></td>
+                <td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">18.01s</td>
+                <td>
+                  <a href="../Envidence%20-%20Group10/REC_STATUS_028.png" onclick="openImageModal('REC_STATUS_028', 'Kiểm tra lịch sử thay đổi trạng thái', 'FAILED'); return false;" class="btn-evidence">
+                    📷 Xem ảnh
+                  </a>
+                </td>
+              </tr>
+        
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Báo cáo tự động được tạo từ kết quả kiểm thử toàn bộ Test Suite của Group 10 (88 Test Cases).</p>
+      <p style="margin-top: 4px; color: #94A3B8;">Học phần: Kiểm thử Phần mềm (Software Testing) - Đại học Sư Phạm Kỹ Thuật TP.HCM (HCMUTE)</p>
+    </div>
+  </div>
+
+  <!-- Interactive Lightbox Modal -->
+  <div id="imageModal" class="modal-overlay" onclick="closeOnBackdrop(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span id="modalTcBadge" class="tc-id-badge" style="background: #3B82F6; color: white;">REC_VACANCY_001</span>
+          <span id="modalStatusBadge" class="status-badge status-pass">✔ PASSED</span>
+          <div>
+            <div id="modalTitle" class="modal-title">Tiêu đề Test Case</div>
+            <div id="modalDesc" class="modal-desc">Mô tả chi tiết</div>
+          </div>
+        </div>
+        <div class="modal-header-actions">
+          <a id="modalOpenTab" href="#" target="_blank" class="btn-modal-action">🔗 Mở tab mới</a>
+          <a id="modalDownload" href="#" download class="btn-modal-action">⬇ Tải ảnh</a>
+          <button onclick="closeModal()" class="btn-modal-action btn-close">✕ Đóng</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <img id="modalImage" class="modal-image" src="" alt="Test Case Screenshot">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const isSubfolder = true;
+    const basePath = isSubfolder ? '../Envidence - Group10/' : 'Envidence - Group10/';
+
+    function openImageModal(tcId, desc, status) {
+      const modal = document.getElementById('imageModal');
+      const img = document.getElementById('modalImage');
+      const title = document.getElementById('modalTitle');
+      const descEl = document.getElementById('modalDesc');
+      const badge = document.getElementById('modalTcBadge');
+      const statusBadge = document.getElementById('modalStatusBadge');
+      const openTab = document.getElementById('modalOpenTab');
+      const downloadLink = document.getElementById('modalDownload');
+
+      badge.innerText = tcId;
+      title.innerText = tcId;
+      descEl.innerText = desc;
+
+      if (status === 'PASSED') {
+        statusBadge.className = 'status-badge status-pass';
+        statusBadge.innerText = '✔ PASSED';
+      } else {
+        statusBadge.className = 'status-badge status-fail';
+        statusBadge.innerText = '✖ FAILED (DEFECT)';
+      }
+
+      // Path fallbacks
+      const candidates = [
+        basePath + tcId + '.png',
+        (isSubfolder ? '' : '../') + 'Envidence - Group10/' + tcId + '.png',
+        './Envidence - Group10/' + tcId + '.png',
+        '../Envidence - Group10/' + tcId + '.png',
+        basePath + 'screenshots/' + tcId + '.png',
+        (isSubfolder ? '' : '../') + 'Envidence - Group10/screenshots/' + tcId + '.png'
+      ];
+
+      let attempt = 0;
+      function tryNext() {
+        if (attempt < candidates.length) {
+          img.src = candidates[attempt];
+          openTab.href = candidates[attempt];
+          downloadLink.href = candidates[attempt];
+          attempt++;
+        }
+      }
+
+      img.onerror = function() {
+        tryNext();
+      };
+
+      tryNext();
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+    }
+
+    function closeOnBackdrop(event) {
+      if (event.target.id === 'imageModal') {
+        closeModal();
+      }
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    function filterTable(filter) {
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const rows = document.querySelectorAll('#tcTable tbody tr');
+      rows.forEach(row => {
+        const status = row.getAttribute('data-status');
+        const module = row.getAttribute('data-module');
+
+        if (filter === 'all') {
+          row.style.display = '';
+        } else if (filter === 'passed') {
+          row.style.display = status === 'passed' ? '' : 'none';
+        } else if (filter === 'failed') {
+          row.style.display = status === 'failed' ? '' : 'none';
+        } else if (filter === 'F10') {
+          row.style.display = module === 'VACANCY' ? '' : 'none';
+        } else if (filter === 'F11') {
+          row.style.display = module === 'CANDIDATE' ? '' : 'none';
+        } else if (filter === 'F12') {
+          row.style.display = module === 'STATUS' ? '' : 'none';
+        }
+      });
+    }
+
+    function searchTable() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#tcTable tbody tr');
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        if (text.includes(input)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
