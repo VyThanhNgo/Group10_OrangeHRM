@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_17: Kiểm tra biên dưới + 1 đơn vị: nhập giờ = 00:01</description>
+   <name>TC_F07_17</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>eaba27e5-972b-4c28-8122-34b09cb9efb1</testCaseGuid>
+</TestCaseEntity>

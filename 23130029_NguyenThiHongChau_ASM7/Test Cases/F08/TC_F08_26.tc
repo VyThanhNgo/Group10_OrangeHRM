@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_26: Kiểm tra XSS tại Employee Name: &lt;script&gt;alert(1)&lt;/script&gt;</description>
+   <name>TC_F08_26</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>cb5218f8-9e87-4fd3-9195-cd77212f3d01</testCaseGuid>
+</TestCaseEntity>

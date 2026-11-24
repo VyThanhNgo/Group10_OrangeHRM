@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_31: Kiểm tra ESS không có nút Approve/Reject trên timesheet của chính mình</description>
+   <name>TC_F09_31</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>b4981e76-f8a5-41f3-8714-8e70122e21fa</testCaseGuid>
+</TestCaseEntity>

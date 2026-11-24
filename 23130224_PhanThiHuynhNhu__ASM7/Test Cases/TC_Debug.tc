@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC_Debug</name>
+   <tag></tag>
+   <integratedEntity>
+      <productName>TESTOPS</productName>
+      <properties>
+         <entry>
+            <key>createdByName</key>
+            <value>Như Phan Thị Huỳnh</value>
+         </entry>
+         <entry>
+            <key>lastModifiedByName</key>
+            <value>Như Phan Thị Huỳnh</value>
+         </entry>
+         <entry>
+            <key>createdByUuid</key>
+            <value>db14ae14-f6fc-43bb-a379-83c495108fa7</value>
+         </entry>
+         <entry>
+            <key>lastModifiedByUuid</key>
+            <value>db14ae14-f6fc-43bb-a379-83c495108fa7</value>
+         </entry>
+      </properties>
+      <type>TESTCASE</type>
+   </integratedEntity>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>6e0083f7-a0fa-4f16-87d8-d648add718e9</testCaseGuid>
+</TestCaseEntity>

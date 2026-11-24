@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_16: Kiểm tra Reject khi không nhập comment</description>
+   <name>TC_F09_16</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>94261207-3237-4705-b32d-e7a396fa872f</testCaseGuid>
+</TestCaseEntity>

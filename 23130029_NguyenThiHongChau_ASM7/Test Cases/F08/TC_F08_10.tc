@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_10: Kiểm tra xem timesheet từ danh sách Pending Action</description>
+   <name>TC_F08_10</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>d7acc9ce-be84-4a4f-909e-0f7b120ddbd0</testCaseGuid>
+</TestCaseEntity>

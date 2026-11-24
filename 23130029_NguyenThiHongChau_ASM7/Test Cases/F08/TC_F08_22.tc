@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_22: Kiểm tra gõ đúng tên nhưng không chọn từ danh sách gợi ý</description>
+   <name>TC_F08_22</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>c86358f5-0be4-455c-9ba1-e18430b3b570</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_35: Kiểm tra lưu khi toàn bộ lưới để trống</description>
+   <name>TC_F07_35</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>8f25965a-d681-4264-8dda-4cb550612dbb</testCaseGuid>
+</TestCaseEntity>

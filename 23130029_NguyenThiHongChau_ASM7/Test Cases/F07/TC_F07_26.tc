@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_26: Kiểm tra comment dài 251 ký tự (vượt biên)</description>
+   <name>TC_F07_26</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>e6770c1a-1ae4-4a63-b135-e93be1011e08</testCaseGuid>
+</TestCaseEntity>

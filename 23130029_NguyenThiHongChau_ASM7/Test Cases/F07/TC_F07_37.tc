@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_37: Kiểm tra dữ liệu vẫn được giữ sau khi đăng xuất và đăng nhập lại</description>
+   <name>TC_F07_37</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>471abd67-33ea-48d3-a588-bd52d28ce72d</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_02: Kiểm tra layout màn hình Edit Timesheet sau khi click [Create Timesheet]</description>
+   <name>TC_F07_02</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>ff19ed31-72e8-4546-b27f-df6d9561442d</testCaseGuid>
+</TestCaseEntity>

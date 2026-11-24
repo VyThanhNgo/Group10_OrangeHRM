@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_19: Kiểm tra nhập chuỗi rất dài (≥ 100 ký tự) vào Employee Name</description>
+   <name>TC_F08_19</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>06906db0-c4f8-406a-ba0b-fabafa08de51</testCaseGuid>
+</TestCaseEntity>

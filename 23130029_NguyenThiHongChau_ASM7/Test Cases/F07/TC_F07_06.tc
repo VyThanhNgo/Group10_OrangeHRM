@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_06: Kiểm tra nhập giờ dạng thập phân '7.5' được chuẩn hóa thành 07:30</description>
+   <name>TC_F07_06</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>910b5b97-8b97-4ca5-b420-6eaa4a45025b</testCaseGuid>
+</TestCaseEntity>

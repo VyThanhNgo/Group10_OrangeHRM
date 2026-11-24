@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_24: Kiểm tra tổng giờ trong 1 ngày qua nhiều hàng vượt 24:00 (12:00 + 13:00)</description>
+   <name>TC_F07_24</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>2330470f-01fb-45ac-87eb-b42bdc065d9e</testCaseGuid>
+</TestCaseEntity>

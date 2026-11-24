@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_18: Kiểm tra nhân viên thấy trạng thái 'Approved' và không sửa được</description>
+   <name>TC_F09_18</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>cbfe7237-cee1-4c82-a825-844a80d77910</testCaseGuid>
+</TestCaseEntity>

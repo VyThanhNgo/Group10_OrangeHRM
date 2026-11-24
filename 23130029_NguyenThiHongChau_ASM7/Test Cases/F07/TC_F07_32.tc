@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_32: Kiểm tra nhập giờ âm ('-1')</description>
+   <name>TC_F07_32</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>e182682f-c1ad-4826-a87b-f5d96751f136</testCaseGuid>
+</TestCaseEntity>

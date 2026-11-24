@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_17: Kiểm tra kỳ rất xa trong quá khứ (chưa có timesheet)</description>
+   <name>TC_F08_17</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>b474e07c-96ba-4263-a63a-798636e39be2</testCaseGuid>
+</TestCaseEntity>

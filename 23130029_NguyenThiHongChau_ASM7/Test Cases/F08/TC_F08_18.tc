@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_18: Kiểm tra nhập 1 ký tự vào Employee Name (độ dài tối thiểu)</description>
+   <name>TC_F08_18</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>a9606d48-b135-4e86-8350-8a4fa885148c</testCaseGuid>
+</TestCaseEntity>

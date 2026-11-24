@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_01: Kiểm tra gửi timesheet trạng thái 'Not Submitted' có dữ liệu hợp lệ</description>
+   <name>TC_F09_01</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>2660b0a7-7923-4772-a9ea-94e4679c9d92</testCaseGuid>
+</TestCaseEntity>

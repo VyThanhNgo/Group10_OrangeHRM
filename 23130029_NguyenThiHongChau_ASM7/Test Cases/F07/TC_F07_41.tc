@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_41: Kiểm tra hết phiên đăng nhập (session timeout) khi đang lưu timesheet</description>
+   <name>TC_F07_41</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>e9b662b0-8a90-4cfd-833c-d88fd8b9a725</testCaseGuid>
+</TestCaseEntity>

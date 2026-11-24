@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_42: Kiểm tra truy cập trang Create Timesheet khi chưa đăng nhập</description>
+   <name>TC_F07_42</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>b68c8156-afe8-45af-b3db-67a52e52945b</testCaseGuid>
+</TestCaseEntity>

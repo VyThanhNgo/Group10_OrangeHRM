@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SearchTimesheet_13: Kiểm tra nhân viên chỉ xem được timesheet của chính mình ở My Timesheets</description>
+   <name>TC_F08_13</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>c01cf3e2-4577-4876-84c4-1b0cdc443829</testCaseGuid>
+</TestCaseEntity>

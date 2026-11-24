@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_03: Kiểm tra lịch sử thao tác (Actions Performed) ghi nhận lần Submit</description>
+   <name>TC_F09_03</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>7bb94126-6004-40f4-9a91-0a2d76d4de63</testCaseGuid>
+</TestCaseEntity>

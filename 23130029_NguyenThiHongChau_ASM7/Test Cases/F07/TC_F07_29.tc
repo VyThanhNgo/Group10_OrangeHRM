@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_29: Kiểm tra gõ Project Name nhưng không chọn từ danh sách gợi ý</description>
+   <name>TC_F07_29</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>e777c99c-9cce-4487-864d-8f9427c716be</testCaseGuid>
+</TestCaseEntity>

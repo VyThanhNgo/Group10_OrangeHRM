@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_13: Kiểm tra thêm comment hợp lệ cho ô giờ</description>
+   <name>TC_F07_13</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>c0bed31e-0d3b-4724-9235-ee6a75e91c11</testCaseGuid>
+</TestCaseEntity>

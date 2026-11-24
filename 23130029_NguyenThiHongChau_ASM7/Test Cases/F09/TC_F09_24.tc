@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_24: Kiểm tra comment phê duyệt đúng 250 ký tự</description>
+   <name>TC_F09_24</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>19a4a10a-43e1-46b2-b40b-e5a2b6a24780</testCaseGuid>
+</TestCaseEntity>

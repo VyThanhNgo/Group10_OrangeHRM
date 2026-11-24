@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_02: Kiểm tra sau khi Submit, nhân viên không còn sửa được timesheet</description>
+   <name>TC_F09_02</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>c40e4834-2740-4171-bac1-c34ded6528c9</testCaseGuid>
+</TestCaseEntity>

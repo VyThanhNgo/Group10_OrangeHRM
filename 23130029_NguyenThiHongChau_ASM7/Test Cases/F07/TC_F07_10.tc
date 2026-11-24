@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_10: Kiểm tra tạo timesheet nhiều hàng cùng Project nhưng khác Activity</description>
+   <name>TC_F07_10</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>6293fff9-5f32-4450-aea7-3cdfc8da9142</testCaseGuid>
+</TestCaseEntity>

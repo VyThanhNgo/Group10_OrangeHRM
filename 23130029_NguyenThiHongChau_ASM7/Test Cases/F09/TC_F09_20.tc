@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_20: Kiểm tra nhân viên sửa timesheet bị Reject và gửi lại thành công</description>
+   <name>TC_F09_20</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>bfcd5951-04ee-41a6-b64a-6981079e6ad1</testCaseGuid>
+</TestCaseEntity>

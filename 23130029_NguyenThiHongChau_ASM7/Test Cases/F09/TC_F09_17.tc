@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_SubmitProcess_17: Kiểm tra timesheet biến mất khỏi Pending Action sau khi Approve</description>
+   <name>TC_F09_17</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>5082e733-0565-4dec-b8f1-f2dfee3995d5</testCaseGuid>
+</TestCaseEntity>

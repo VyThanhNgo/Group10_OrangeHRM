@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>TIME_CreateTimesheet_08: Kiểm tra tạo timesheet có giờ cho cả 7 ngày (mỗi ngày 08:00)</description>
+   <name>TC_F07_08</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>2d14fd53-5505-458c-b231-23184f19ba93</testCaseGuid>
+</TestCaseEntity>
